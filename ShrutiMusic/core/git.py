@@ -1,25 +1,3 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: badboy809075@gmail.com
-
-
 import asyncio
 import shlex
 from typing import Tuple
@@ -54,22 +32,37 @@ def install_req(cmd: str) -> Tuple[str, str, int, int]:
 def git():
     REPO_LINK = config.UPSTREAM_REPO
     if config.GIT_TOKEN:
-        GIT_USERNAME = REPO_LINK.split("com/")[1].split("/")[0]
-        TEMP_REPO = REPO_LINK.split("https://")[1]
-        UPSTREAM_REPO = f"https://Shadow737hub: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@{TEMP_REPO}"
+        try:
+            # Handle https://github.com/<username>/<repo>
+            if REPO_LINK.startswith("http"):
+                parts = REPO_LINK.rstrip("/").split("/")
+                GIT_USERNAME = parts[-2]  # username
+                TEMP_REPO = REPO_LINK.replace("https://", "")
+                UPSTREAM_REPO = f"https://{GIT_USERNAME}:{config.GIT_TOKEN}@{TEMP_REPO}"
+            # Handle SSH: git@github.com:<username>/<repo>.git
+            elif REPO_LINK.startswith("git@"):
+                TEMP_REPO = REPO_LINK.split("github.com:")[1]
+                GIT_USERNAME = TEMP_REPO.split("/")[0]
+                UPSTREAM_REPO = f"https://{GIT_USERNAME}:{config.GIT_TOKEN}@github.com/{TEMP_REPO}"
+            else:
+                raise ValueError("Invalid UPSTREAM_REPO format.")
+        except (IndexError, ValueError) as e:
+            LOGGER(__name__).error(f"Invalid UPSTREAM_REPO: {REPO_LINK} ({e})")
+            return
     else:
         UPSTREAM_REPO = config.UPSTREAM_REPO
+
     try:
         repo = Repo()
-        LOGGER(__name__).info(f"Git Client Found [VPS DEPLOYER]")
+        LOGGER(__name__).info("Git Client Found [VPS DEPLOYER]")
     except GitCommandError:
-        LOGGER(__name__).info(f"Invalid Git Command")
+        LOGGER(__name__).info("Invalid Git Command")
+        return
     except InvalidGitRepositoryError:
         repo = Repo.init()
-        if "origin" in repo.remotes:
-            origin = repo.remote("origin")
-        else:
-            origin = repo.create_remote("origin", UPSTREAM_REPO)
+        if "origin" not in repo.remotes:
+            repo.create_remote("origin", UPSTREAM_REPO)
+        origin = repo.remote("origin")
         origin.fetch()
         repo.create_head(
             config.UPSTREAM_BRANCH,
@@ -80,26 +73,8 @@ def git():
         )
         repo.heads[config.UPSTREAM_BRANCH].checkout(True)
         try:
-            repo.create_remote("origin", config.UPSTREAM_REPO)
-        except BaseException:
-            pass
-        nrs = repo.remote("origin")
-        nrs.fetch(config.UPSTREAM_BRANCH)
-        try:
-            nrs.pull(config.UPSTREAM_BRANCH)
+            origin.pull(config.UPSTREAM_BRANCH)
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
         install_req("pip3 install --no-cache-dir -r requirements.txt")
-        LOGGER(__name__).info(f"Fetching updates from upstream repository...")
-
-
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
-
-# ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
-# ===========================================
-
-
-# ❤️ Love From ShrutiBots 
+        LOGGER(__name__).info("Fetching updates from upstream repository...")
