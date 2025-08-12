@@ -1,3 +1,4 @@
+import asyncio
 import time
 
 from pyrogram import filters
@@ -45,8 +46,8 @@ async def start_pm(client, message: Message, _):
     await sent.edit("sᴛᴀʀᴛɪɴɢ")
     await asyncio.sleep(1)
 
-    # 3. Send sticker (replace FILE_ID with your sticker's file_id)
-    await client.send_sticker(message.chat.id, "CAACAgUAAxkBAAEBbTJlklcUeU1n4lR0yMORgAAiD-yM1H5gAAkRsAAjDBQFQAAQGJpAABkBA")  # Example file_id
+    # 3. Send sticker
+    await client.send_sticker(message.chat.id, "CAACAgUAAxkBAAEPEi9oj8M2zUbdbFHEGyTRb3njgO0eWQACyB4AAlkXgVfzUnRu-4zT7jYE")  
 
     # 4. Send the final start message as in your original code
     out = private_panel(_)
