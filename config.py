@@ -31,7 +31,7 @@ HEROKU_API_KEY = os.getenv("HEROKU_API_KEY", "HRKU-AADP58F46wfUmelp4NVW5v2V7waz3
 # 🔄 Git & Update Settings
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-UPSTREAM_REPO = os.getenv("UPSTREAM_REPO", none)
+UPSTREAM_REPO = os.getenv("UPSTREAM_REPO", None)
 UPSTREAM_BRANCH = os.getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = os.getenv("GIT_TOKEN", "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")
 
