@@ -30,12 +30,11 @@ from strings import get_string
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
-    
-    # 1. Send initial message
+
+    # Animation sequence
     sent = await message.reply_text(
         f"ʜᴇʟʟᴏ {message.from_user.mention} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ\nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ/sɪs . . . <3"
     )
-    # 2. Edit sequence with small delays
     await asyncio.sleep(1)
     await sent.edit("❤")
     await asyncio.sleep(0.7)
@@ -46,28 +45,20 @@ async def start_pm(client, message: Message, _):
     await sent.edit("sᴛᴀʀᴛɪɴɢ")
     await asyncio.sleep(1)
 
-    # 3. Send sticker
-    await client.send_sticker(message.chat.id, "CAACAgUAAxkBAAEPEi9oj8M2zUbdbFHEGyTRb3njgO0eWQACyB4AAlkXgVfzUnRu-4zT7jYE")  
-
-    # 4. Send the final start message as in your original code
-    out = private_panel(_)
-    UP, CPU, RAM, DISK = await bot_sys_stats()
-    await message.reply_photo(
-        photo=config.START_IMG_URL,
-        caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
-        reply_markup=InlineKeyboardMarkup(out),
+    # Sticker
+    await client.send_sticker(
+        message.chat.id,
+        "CAACAgUAAxkBAAEPEi9oj8M2zUbdbFHEGyTRb3njgO0eWQACyB4AAlkXgVfzUnRu-4zT7jYE"
     )
-    if await is_on_off(2):
-        return await app.send_message(
-            chat_id=config.LOG_GROUP_ID,
-            text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
-        )
-            return
-        if name[0:3] == "inf":
+
+    # Handle YouTube info link case
+    if len(message.command) > 1:
+        name = message.command[1]
+        if name.startswith("inf"):
             m = await message.reply_text("🔎")
-            query = (str(name)).replace("info_", "", 1)
-            query = f"https://www.youtube.com/watch?v={query}"
-            results = VideosSearch(query, limit=1)
+            query = name.replace("info_", "", 1)
+            query_url = f"https://www.youtube.com/watch?v={query}"
+            results = VideosSearch(query_url, limit=1)
             for result in (await results.next())["result"]:
                 title = result["title"]
                 duration = result["duration"]
@@ -96,23 +87,29 @@ async def start_pm(client, message: Message, _):
                 reply_markup=key,
             )
             if await is_on_off(2):
-                return await app.send_message(
+                await app.send_message(
                     chat_id=config.LOG_GROUP_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n"
+                         f"<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n"
+                         f"<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
-    else:
-        out = private_panel(_)
-        UP, CPU, RAM, DISK = await bot_sys_stats()
-        await message.reply_photo(
-            photo=config.START_IMG_URL,
-            caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
-            reply_markup=InlineKeyboardMarkup(out),
+            return
+
+    # Normal start panel
+    out = private_panel(_)
+    UP, CPU, RAM, DISK = await bot_sys_stats()
+    await message.reply_photo(
+        photo=config.START_IMG_URL,
+        caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
+        reply_markup=InlineKeyboardMarkup(out),
+    )
+    if await is_on_off(2):
+        await app.send_message(
+            chat_id=config.LOG_GROUP_ID,
+            text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n"
+                 f"<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n"
+                 f"<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
         )
-        if await is_on_off(2):
-            return await app.send_message(
-                chat_id=config.LOG_GROUP_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
-            )
 
 
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
@@ -169,4 +166,3 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
-
