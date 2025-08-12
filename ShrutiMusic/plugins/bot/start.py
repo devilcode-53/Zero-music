@@ -1,25 +1,3 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: badboy809075@gmail.com
-
-
 import time
 
 from pyrogram import filters
@@ -51,23 +29,38 @@ from strings import get_string
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
-    if len(message.text.split()) > 1:
-        name = message.text.split(None, 1)[1]
-        if name[0:4] == "help":
-            keyboard = help_pannel(_)
-            return await message.reply_photo(
-                photo=config.START_IMG_URL,
-                caption=_["help_1"].format(config.SUPPORT_GROUP),
-                protect_content=True,
-                reply_markup=keyboard,
-            )
-        if name[0:3] == "sud":
-            await sudoers_list(client=client, message=message, _=_)
-            if await is_on_off(2):
-                return await app.send_message(
-                    chat_id=config.LOG_GROUP_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
-                )
+    
+    # 1. Send initial message
+    sent = await message.reply_text(
+        f"ʜᴇʟʟᴏ {message.from_user.mention} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ\nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ/sɪs . . . <3"
+    )
+    # 2. Edit sequence with small delays
+    await asyncio.sleep(1)
+    await sent.edit("❤")
+    await asyncio.sleep(0.7)
+    await sent.edit("🎊")
+    await asyncio.sleep(0.7)
+    await sent.edit("🎉")
+    await asyncio.sleep(0.7)
+    await sent.edit("sᴛᴀʀᴛɪɴɢ")
+    await asyncio.sleep(1)
+
+    # 3. Send sticker (replace FILE_ID with your sticker's file_id)
+    await client.send_sticker(message.chat.id, "CAACAgUAAxkBAAEBbTJlklcUeU1n4lR0yMORgAAiD-yM1H5gAAkRsAAjDBQFQAAQGJpAABkBA")  # Example file_id
+
+    # 4. Send the final start message as in your original code
+    out = private_panel(_)
+    UP, CPU, RAM, DISK = await bot_sys_stats()
+    await message.reply_photo(
+        photo=config.START_IMG_URL,
+        caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
+        reply_markup=InlineKeyboardMarkup(out),
+    )
+    if await is_on_off(2):
+        return await app.send_message(
+            chat_id=config.LOG_GROUP_ID,
+            text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+        )
             return
         if name[0:3] == "inf":
             m = await message.reply_text("🔎")
