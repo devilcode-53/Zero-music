@@ -1,4 +1,3 @@
-
 from pyrogram.types import InlineKeyboardButton
 import config
 from ShrutiMusic import app
@@ -32,8 +31,7 @@ def private_panel(_):
             )
         ],
         [
-                  
-InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
+            InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
         ],
         [
             InlineKeyboardButton(text=_["S_B_4"], callback_data="help_page_1")
@@ -64,5 +62,3 @@ def owner_panel(_):
         ]
     ]
     return buttons
-
-
