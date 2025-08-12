@@ -11,9 +11,9 @@ load_dotenv()
 # 📲 Telegram & API Credentials
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-API_ID = int(os.getenv("22657083"))
-API_HASH = os.getenv("d6186691704bd901bdab275ceaab88f3")
-BOT_TOKEN = os.getenv("8477795771:AAHAL8ZauVa-qYlcRfxWTDGp6-76O9JAa98")
+API_ID = int(os.getenv("API_ID", "22657083"))
+API_HASH = os.getenv("API_HASH", "d6186691704bd901bdab275ceaab88f3")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8477795771:AAHAL8ZauVa-qYlcRfxWTDGp6-76O9JAa98")
 OWNER_ID = int(os.getenv("OWNER_ID", "8086485131"))
 OWNER_USERNAME = os.getenv("OWNER_USERNAME", "IzCurse")
 BOT_USERNAME = os.getenv("BOT_USERNAME", "AyakaXMusicBot")
@@ -39,7 +39,7 @@ GIT_TOKEN = os.getenv("GIT_TOKEN", "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")
 # 🔗 Support Links
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-SUPPORT_CHANNEL = os.getenv("https://t.me/EX_BOT_UPDATES")
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/EX_BOT_UPDATES")
 SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/+G42j7plUt91mYmQx")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
