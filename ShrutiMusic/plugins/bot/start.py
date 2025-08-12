@@ -31,25 +31,22 @@ from strings import get_string
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
 
-    # Animation sequence
+    # Animation sequence (faster)
     sent = await message.reply_text(
         f"ʜᴇʟʟᴏ {message.from_user.mention} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ\nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ/sɪs . . . <3"
     )
-    await asyncio.sleep(1)
+    await asyncio.sleep(0.5)
     await sent.edit("❤")
-    await asyncio.sleep(0.7)
+    await asyncio.sleep(0.4)
     await sent.edit("🎊")
-    await asyncio.sleep(0.7)
+    await asyncio.sleep(0.4)
     await sent.edit("🎉")
-    await asyncio.sleep(0.7)
+    await asyncio.sleep(0.4)
     await sent.edit("sᴛᴀʀᴛɪɴɢ")
-    await asyncio.sleep(1)
+    await asyncio.sleep(0.5)
 
-    # Sticker
-    await client.send_sticker(
-        message.chat.id,
-        "CAACAgUAAxkBAAEPEi9oj8M2zUbdbFHEGyTRb3njgO0eWQACyB4AAlkXgVfzUnRu-4zT7jYE"
-    )
+    # Delete the animation message ✅
+    await sent.delete()
 
     # Handle YouTube info link case
     if len(message.command) > 1:
