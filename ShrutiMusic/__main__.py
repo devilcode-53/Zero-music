@@ -57,6 +57,7 @@ COMMANDS = [
     BotCommand("cplayforce", "🚨 Channel force audio play"),
     BotCommand("cvplayforce", "🚨 Channel force video play"),
     BotCommand("channelplay", "🔗 Connect group to channel"),
+    BotCommand("couples", "Make random couples"),
     BotCommand("loop", "🔁 Enable/disable loop"),
     BotCommand("stats", "📊 Bot stats"),
     BotCommand("shuffle", "🔀 Shuffle the queue"),
