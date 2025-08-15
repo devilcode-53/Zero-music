@@ -1,4 +1,5 @@
-# coaded by Ivan don't sell it
+# ATLEAST GIVE CREDITS IF YOU STEALING :(((((((((((((((((((((((((((((((((((((
+# ELSE NO FURTHER PUBLIC THUMBNAIL UPDATES
 
 import random
 import logging
@@ -247,5 +248,3 @@ async def gen_thumb(videoid: str):
         logging.error(f"Error generating thumbnail for video {videoid}: {e}")
         traceback.print_exc()
         return None
-
-
