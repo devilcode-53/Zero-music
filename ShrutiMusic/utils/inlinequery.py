@@ -1,6 +1,3 @@
-#coaded by Ivan please don't sell it
-
-
 from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent
 
 answer = []
@@ -45,5 +42,3 @@ answer.extend(
         ),
     ]
 )
-
-
