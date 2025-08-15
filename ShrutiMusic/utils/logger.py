@@ -1,9 +1,7 @@
-#coaded by Ivan please don't sell it
-
 from pyrogram.enums import ParseMode
 
-from IVANMUSIC import app
-from IVANMUSIC.utils.database import is_on_off
+from ShrutiMusic import app
+from ShrutiMusic.utils.database import is_on_off
 from config import LOG_GROUP_ID
 
 
@@ -33,5 +31,3 @@ async def play_logs(message, streamtype):
             except:
                 pass
         return
-
-
