@@ -39,7 +39,7 @@
     },
     "UPSTREAM_REPO": {
       "description": "URL of your GitHub repository",
-      "value": "https://github.com/NoxxOP/ShrutiMusic",
+      "value": "https://github.com/Shadow737hub/Ayaka",
       "required": false
     },
     "STRING_SESSION": {
