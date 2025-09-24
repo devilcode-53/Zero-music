@@ -24,8 +24,8 @@ BOT_USERNAME = os.getenv("BOT_USERNAME", "crystalmusicx_bot")
 
 MONGO_DB_URI = os.getenv("MONGO_DB_URI", "mongodb+srv://shreyan82683:shreyan82683@cluster0.c8v26ub.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", "-1002534306292"))
-HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME", "paapp")
-HEROKU_API_KEY = os.getenv("HEROKU_API_KEY", "HRKU-AADP58F46wfUmelp4NVW5v2V7waz32SkCj4l3Ckw8p7Q_____wEg8asnTooh")
+HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME", "")
+HEROKU_API_KEY = os.getenv("HEROKU_API_KEY", "")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # 🔄 Git & Update Settings
