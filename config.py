@@ -40,7 +40,7 @@ GIT_TOKEN = os.getenv("GIT_TOKEN", "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")
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/TNCnetwork")
-SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/+SC_-uZJmT-40Mjdl")
+SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/+KZ7nuVJfWQE2ODA1")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # ⏱️ Duration & Playlist Settings
