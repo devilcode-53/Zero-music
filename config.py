@@ -49,6 +49,12 @@ SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/+KZ7nuVJfWQE2ODA1")
 DURATION_LIMIT_MIN = int(os.getenv("DURATION_LIMIT", 300))
 PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 25))
 
+
+# API 
+
+API_KEY = os.getenv("API_KEY", "30DxNexGenBots121b50")
+API_URL = os.getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
+VIDEO_API_URL = os.getenv("VIDEO_API_URL", 'https://api.video.thequickearn.xyz')
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # 📦 File Size Limits (in bytes)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
