@@ -9,7 +9,8 @@ gitpython
 hachoir
 heroku3
 httpx[http2]==0.25.2
-motor
+motor>=3.3.1
+pymongo>=4.5,<5
 numpy
 opencv-python
 pytz
@@ -24,15 +25,11 @@ requests
 speedtest-cli
 spotipy
 tgcrypto
-telegraph 
+telegraph
 unidecode
 uvloop
 yt-dlp
 youtube-search
 youtube-search-python
-# ===========================================
-# ©️ 2025 Nand Yaduwanshi , aka @NoxxOP
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
-# ===========================================
+
 
