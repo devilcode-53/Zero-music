@@ -52,7 +52,7 @@ PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 25))
 
 # API 
 
-API_KEY = os.getenv("API_KEY", "30DxNexGenBots121b50")
+API_KEY = getenv("API_KEY", "30DxNexGenBotsfcfad8")
 API_URL = os.getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
 VIDEO_API_URL = os.getenv("VIDEO_API_URL", 'https://api.video.thequickearn.xyz')
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
