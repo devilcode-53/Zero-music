@@ -22,6 +22,8 @@
 
 import asyncio
 import importlib
+import uvloop
+uvloop.install()
 from pyrogram import idle
 from pyrogram.types import BotCommand
 from pytgcalls.exceptions import NoActiveGroupCall
@@ -32,9 +34,6 @@ from ShrutiMusic.misc import sudo
 from ShrutiMusic.plugins import ALL_MODULES
 from ShrutiMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
-
-import uvloop
-uvloop.install()
 
 # Bot Commands List
 COMMANDS = [
