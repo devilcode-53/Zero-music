@@ -32,7 +32,10 @@ from ShrutiMusic.misc import sudo
 from ShrutiMusic.plugins import ALL_MODULES
 from ShrutiMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
+import uvloop
 
+uvloop.install() 
+asyncio.set_event_loop(asyncio.new_event_loop())
 # Bot Commands List
 COMMANDS = [
     BotCommand("start", "🚀 Start bot"),
