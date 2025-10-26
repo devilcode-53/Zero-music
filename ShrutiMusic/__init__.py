@@ -19,10 +19,9 @@
 # Contact for permissions:
 # Email: badboy809075@gmail.com
 
-import uvloop
-
-uvloop.install()
+import asyncio
 asyncio.set_event_loop(asyncio.new_event_loop())
+
 
 
 from ShrutiMusic.core.bot import Aviax
